@@ -1,7 +1,8 @@
 # Function Dialect Starter
 This is a starter project for developers who want to bring their custom C++ operators to Function.
 
-> ⚠️ This is an extremely advanced Function use-case, targeted towards developers who want to accelerate their Function predictors with custom accelerator or hardware support.
+> [!IMPORTANT]
+> This is an extremely advanced Function use-case, targeted towards developers who want to accelerate their Function predictors with custom accelerator or hardware support.
 
 ## Background
 At a high level, Function is a cross-platform compiler and optimizer for running stateless Python functions. The platform works in three steps:
@@ -15,7 +16,7 @@ At a high level, Function is a cross-platform compiler and optimizer for running
 Our lowering process is powered by "Operators", which provide a mapping from a high-level Python operation into a concrete C++ implementation. We then collect these operators into a "Dialect".
 
 ## Defining Operators
-An operator is simply a C++ functor decorated with Function-specific annotations (see [`Dialect.hpp`](https://github.com/fxnai/fxnc/blob/main/cxx/Dialect.hpp)). For example, below is an operator for the Python addition (`a + b`) operation:
+An operator is simply a C++ functor decorated with Function-specific annotations (see [`Dialect.hpp`](https://github.com/fxnai/fxnc/blob/main/include/Function/cxx/Dialect.hpp)). For example, below is an operator for the Python addition (`a + b`) operation:
 
 ```cpp
 #include <Function/Function.hpp>
