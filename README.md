@@ -35,6 +35,7 @@ struct AddOp final {
 
 Function supports multiple kinds of operators, including type casts, AI model inference, and more. See [docs/Create.md](docs/Create.md) for more information about how to create dialects.
 
+> [!TIP]
 > Function maintains an internal dialect that provides highly-optimized C++ implementations for much of the Python language syntax; base objects like lists and dictionaries; and AI inference operations.
 
 Developers will be able to provide their custom dialects on [fxn.ai](https://fxn.ai).
@@ -42,13 +43,10 @@ Developers will be able to provide their custom dialects on [fxn.ai](https://fxn
 ## Our Approach to Performance
 Function is architected to completely separate code generation from performance optimization. This means that our platform is designed to search for the best performing operator for every prediction function for every unique device.
 
-> 🤔 Why do this? We believe that the highest-performing programs aren't written--they are discovered.
+> [!TIP]
+> 🤔 If you're wondering why we do this: we believe that the highest-performing programs aren't written--they are discovered.
 
-When Function traces a Python function, we map each operation in Python to a set of equivalent C++ implementations based on the dialects we have available. For instance, we might have 10 separate C++ implementations of the `a + b` Python operation that use anything from the C++ addition operator to `armv8` inline assembly.
-
-We then take all combinations across all nodes in the traced function, and compile each of these for each platform we support. At runtime, we collect telemetry data and use it to discover which implementations work best for each unqiue device. This way, the more users use Function, the better performance everyone will get.
-
-> Given how many implementations we emit, and how empirical performance optimization is, we choose to never make assumptions for how a given implementation might perform on a given device. Instead, we are fully data-driven.
+When Function traces a Python function, we map each operation in Python to a set of equivalent C++ implementations based on the dialects we have available. We then take all combinations and compile them. At runtime, we collect telemetry data and use it to discover which implementations work best for each unqiue device.
 
 ___
 
